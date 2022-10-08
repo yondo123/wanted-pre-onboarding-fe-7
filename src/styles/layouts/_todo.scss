@@ -1,0 +1,62 @@
+.todo {
+    input {
+        border: 1px solid $border;
+        border-radius: 4px;
+        width: 168px;
+    }
+
+    .add-wrap {
+        text-align: center;
+        button {
+            margin-left: 8px;
+        }
+    }
+
+    .list-wrap {
+        text-align: center;
+        padding: 24px 4px;
+        .list-item {
+            input {
+                width: 196px;
+            }
+
+            text-align: left;
+            padding: 4px 0;
+            margin-top: 24px;
+            border-bottom: 1px solid $border;
+            display: flex;
+
+            .todo-item {
+                width: 160px;
+                margin-left: 8px;
+                display: block;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
+
+            .button-control {
+                margin-left: 8px;
+            }
+        }
+    }
+
+    @include responsive(Tablet) {
+        input {
+            height: 24px;
+            width: 256px;
+        }
+
+        .list-wrap {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 480px;
+            .list-item {
+                .todo-item {
+                    width: 320px;
+                }
+            }
+        }
+    }
+}

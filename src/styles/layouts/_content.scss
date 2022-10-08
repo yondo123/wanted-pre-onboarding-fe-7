@@ -1,0 +1,46 @@
+body {
+    width: 320px;
+    height: 100vh;
+    margin: 0 auto;
+    padding: 0;
+    position: relative;
+    background-color: $white;
+    color: $font;
+
+    main {
+        .button-wrap {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            flex-direction: column;
+            justify-items: center;
+            align-items: center;
+            button {
+                margin-top: 16px;
+                height: 32px;
+            }
+        }
+    }
+
+    .text-lg {
+        @include text-style(lg);
+    }
+
+    .text-md {
+        @include text-style(md);
+    }
+
+    .text-sm {
+        @include text-style(sm);
+    }
+
+    @include responsive(Tablet) {
+        width: 640px;
+    }
+
+    @include responsive(Desktop) {
+        width: 1024px;
+    }
+}

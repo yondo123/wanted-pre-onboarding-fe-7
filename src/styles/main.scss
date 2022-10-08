@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Dongle:wght@300&display=swap');
 
 //bases
+@import './bases/fonts';
 @import './bases/normalize';
 @import './bases/ui';
 @import './bases/utils';
@@ -11,3 +12,11 @@
 
 //mixins
 @import './mixins/fontstyles';
+@import './mixins/responsive';
+
+//layouts
+@import './layouts/buttons';
+@import './layouts/header';
+@import './layouts/content';
+@import './layouts/form';
+@import './layouts/todo';

@@ -1,0 +1,70 @@
+.form {
+    .title {
+        text-align: center;
+    }
+
+    .input-wrap {
+        margin-top: 16px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding-left: 24px;
+
+        .notice {
+            font-weight: 700;
+            color: $accent;
+        }
+
+        input {
+            width: 80%;
+            margin-top: 8px;
+            padding: 2px 4px;
+            border: 1px solid $border;
+            border-radius: 4px;
+        }
+    }
+
+    .submit {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        margin-top: 16px;
+        position: absolute;
+    }
+
+    @include responsive(Tablet) {
+        .title {
+            margin-bottom: 32px;
+        }
+        .input-wrap {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding-left: 24px;
+
+            .input-field {
+                display: flex;
+                justify-content: center;
+                align-items: flex-end;
+            }
+
+            .marker {
+                min-width: 96px;
+            }
+
+            input {
+                margin: 0;
+                width: 240px;
+            }
+
+            .notice {
+                margin-top: 8px;
+            }
+        }
+
+        .submit {
+            margin-top: 48px;
+        }
+    }
+}
