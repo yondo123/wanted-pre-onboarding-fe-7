@@ -1,0 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Dongle:wght@300&display=swap');
+
+//bases
+@import './bases/normalize';
+@import './bases/ui';
+@import './bases/utils';
+
+//constants
+@import './constants/colors';
+@import './constants/typography';
+
+//mixins
+@import './mixins/fontstyles';
