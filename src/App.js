@@ -1,8 +1,7 @@
 import './styles/main.scss';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
-import Signin from './pages/Signin';
-import Signup from './pages/Signup';
+import Sign from './pages/Sign';
 import TodoList from './pages/TodoList';
 
 function App() {
@@ -14,8 +13,8 @@ function App() {
             <BrowserRouter>
                 <Routes>
                     <Route path="/" element={<Home />} />
-                    <Route path="/signin" element={<Signin />} />
-                    <Route path="/signup" element={<Signup />} />
+                    <Route path="/signin" element={<Sign />} />
+                    <Route path="/signup" element={<Sign />} />
                     <Route path="/todo" element={<TodoList />} />
                 </Routes>
             </BrowserRouter>
