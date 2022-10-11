@@ -4,48 +4,27 @@ import { constants } from '../utils/constants';
 /**
  * 회원가입 API
  * @param {object} request : 요청 객체
- * @param {function} callback : 콜백 함수
  */
-function requestSignUp(request, callback) {
-    fetch(`${constants.REQUEST_URL}/auth/signup`, {
+async function requestSignUp(request) {
+    const response = await fetch(`${constants.REQUEST_URL}/auth/signup`, {
         method: 'POST',
         headers: { 'Content-Type': ' application/json' },
         body: JSON.stringify(request)
-    })
-        .then(function (response) {
-            return response;
-        })
-        .then(function (res, result) {
-            return checkHttpResponse(res, result);
-        })
-        .then(function (res) {
-            callback(res);
-        })
-        .catch(function (res) {
-            callback(res);
-        });
+    });
+    return checkHttpResponse(response);
 }
 
 /**
  * 로그인 API
  * @param {object} request : 요청 객체
- * @param {function} callback : 콜백 함수
  */
-function requestSignIn(request, callback) {
-    fetch(`${constants.REQUEST_URL}/auth/signin`, {
+async function requestSignIn(request) {
+    const response = await fetch(`${constants.REQUEST_URL}/auth/signin`, {
         method: 'POST',
         headers: { 'Content-Type': ' application/json' },
         body: JSON.stringify(request)
-    })
-        .then(function (response) {
-            return checkHttpResponse(response);
-        })
-        .then(function (res) {
-            callback(res);
-        })
-        .catch(function (res) {
-            callback(res);
-        });
+    });
+    return checkHttpResponse(response);
 }
 
 export { requestSignUp, requestSignIn };

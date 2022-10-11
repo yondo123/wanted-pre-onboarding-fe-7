@@ -41,7 +41,7 @@ const Sign = function () {
 
     //로그인
     function fetchSignIn() {
-        requestSignIn({ email: accountInfo.email, password: accountInfo.password }, function (res) {
+        requestSignIn({ email: accountInfo.email, password: accountInfo.password }).then((res) => {
             if (res.result) {
                 localStorage.setItem('token', res.data.access_token);
                 navigate('/todo');
@@ -53,8 +53,7 @@ const Sign = function () {
 
     //회원가입
     function fetchSignUp() {
-        requestSignUp({ email: accountInfo.email, password: accountInfo.password }, function (res) {
-            console.log(res);
+        requestSignUp({ email: accountInfo.email, password: accountInfo.password }).then((res) => {
             if (res.result) {
                 alert('회원이 되어주셔서 감사합니다!');
                 navigate('/');
