@@ -37,4 +37,11 @@ function checkHttpResponse(response) {
     }
 }
 
-export { checkHttpResponse };
+/**
+ * 권한 체크
+ */
+function checkAuthState() {
+    return localStorage.getItem('token') ? true : false;
+}
+
+export { checkHttpResponse, checkAuthState };

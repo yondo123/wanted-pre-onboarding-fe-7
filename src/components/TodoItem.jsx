@@ -1,5 +1,7 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { deleteTodoItem, updateTodoItem } from '../api/todo';
+import { checkAuthState } from '../utils/util';
 
 const TodoItem = function ({ id, todo, isCompleted, userId, onRefreshTodoItem }) {
     const [todoState, setTodoState] = useState({
@@ -8,6 +10,13 @@ const TodoItem = function ({ id, todo, isCompleted, userId, onRefreshTodoItem })
     });
     const [editMode, setEditMode] = useState(false);
     const [editTodo, setEditTodo] = useState('');
+    const navigate = useNavigate();
+
+    useEffect(function () {
+        if (!checkAuthState()) {
+            navigate('/');
+        }
+    });
 
     //todo 삭제
     function fetchDeleteTodoItem() {
