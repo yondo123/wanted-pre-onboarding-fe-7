@@ -117,7 +117,13 @@ const TodoItem = function ({ id, todo, isCompleted, userId, onRefreshTodoItem })
                     >
                         수정
                     </button>
-                    <button type="button" className="button-control small" onClick={fetchDeleteTodoItem}>
+                    <button
+                        type="button"
+                        className="button-control small"
+                        onClick={(e) => {
+                            fetchDeleteTodoItem();
+                        }}
+                    >
                         삭제
                     </button>
                 </li>

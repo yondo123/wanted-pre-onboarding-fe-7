@@ -21,15 +21,15 @@ const TodoList = function () {
 
     //todo refresh
     function onRefreshTodoItem() {
-        fetchCreateTodoItem();
+        fetchGetTodoList();
     }
 
     //todo 조회
     function fetchGetTodoList() {
         getTodoList().then((res) => {
             if (res.result) {
-                setNewTodo('');
                 setTodolist(res.data);
+                setNewTodo('');
             } else {
                 alert(res.message);
             }
@@ -53,6 +53,7 @@ const TodoList = function () {
                         type="text"
                         id="todo-item"
                         placeholder="새로운 할 일을 입력해주세요."
+                        defaultValue={newTodo}
                         maxLength="20"
                         onKeyUp={(e) => {
                             setNewTodo(e.target.value);
