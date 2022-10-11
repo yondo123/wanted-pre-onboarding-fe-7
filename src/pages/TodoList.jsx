@@ -1,4 +1,37 @@
+import TodoItem from '../components/TodoItem';
+import { useEffect, useState } from 'react';
+import { getTodoList, createTodoItem } from '../api/todo';
+
 const TodoList = function () {
+    const [todolist, setTodolist] = useState([]);
+    const [newTodo, setNewTodo] = useState('');
+    useEffect(function () {
+        fetchGetTodoList(function (res) {
+            setTodolist(res);
+        });
+    }, []);
+
+    //Todo 조회
+    function fetchGetTodoList() {
+        getTodoList(function (res) {
+            console.log(res);
+            if (res.result) {
+                setTodolist(res.data);
+            } else {
+                alert(res.message);
+            }
+        });
+    }
+
+    //todo 전송
+    function fetchCreateTodoItem() {
+        createTodoItem({ todo: newTodo }, function () {
+            fetchGetTodoList(function (res) {
+                setTodolist(res);
+            });
+        });
+    }
+
     return (
         <main>
             <div className="todo">
@@ -7,84 +40,29 @@ const TodoList = function () {
                     <label htmlFor="todo-item" className="hide">
                         todo
                     </label>
-                    <input type="text" id="todo-item" placeholder="새로운 할 일을 입력해주세요." maxLength="20" />
-                    <button type="button" className="button-normal small">
+                    <input
+                        type="text"
+                        id="todo-item"
+                        placeholder="새로운 할 일을 입력해주세요."
+                        maxLength="20"
+                        onKeyUp={(e) => {
+                            setNewTodo(e.target.value);
+                        }}
+                    />
+                    <button
+                        type="button"
+                        className="button-normal small"
+                        disabled={!newTodo.length}
+                        onClick={fetchCreateTodoItem}
+                    >
                         추가
                     </button>
                 </section>
                 <section className="list-wrap">
                     <ul>
-                        <li className="list-item">
-                            <button type="button">
-                                <i className="ic-check"></i>
-                            </button>
-                            <span className="text-md todo-item">밥먹기</span>
-                            <button type="button" className="button-control small">
-                                수정
-                            </button>
-                            <button type="button" className="button-control small">
-                                삭제
-                            </button>
-                        </li>
-                        <li className="list-item">
-                            <button type="button">
-                                <i className="ic-uncheck"></i>
-                            </button>
-                            <span className="text-md todo-item">밥먹기</span>
-                            <button type="button" className="button-control small">
-                                수정
-                            </button>
-                            <button type="button" className="button-control small">
-                                삭제
-                            </button>
-                        </li>
-                        <li className="list-item">
-                            <button type="button">
-                                <i className="ic-uncheck"></i>
-                            </button>
-                            <span className="text-md todo-item">밥먹기</span>
-                            <button type="button" className="button-control small">
-                                수정
-                            </button>
-                            <button type="button" className="button-control small">
-                                삭제
-                            </button>
-                        </li>
-                        <li className="list-item">
-                            <button type="button">
-                                <i className="ic-uncheck"></i>
-                            </button>
-                            <span className="text-md todo-item">밥먹기</span>
-                            <button type="button" className="button-control small">
-                                수정
-                            </button>
-                            <button type="button" className="button-control small">
-                                삭제
-                            </button>
-                        </li>
-                        <li className="list-item">
-                            <button type="button">
-                                <i className="ic-uncheck"></i>
-                            </button>
-                            <span className="text-md todo-item">
-                                밥먹기밥먹기밥먹기밥먹기밥먹기밥먹기밥먹기밥먹기밥먹기밥먹기
-                            </span>
-                            <button type="button" className="button-control small">
-                                수정
-                            </button>
-                            <button type="button" className="button-control small">
-                                삭제
-                            </button>
-                        </li>
-                        <li className="list-item edit">
-                            <input type="text" className="edit-item" value="공부하기" maxLength="20" />
-                            <button type="button" className="button-control small">
-                                제출
-                            </button>
-                            <button type="button" className="button-control small">
-                                취소
-                            </button>
-                        </li>
+                        {todolist.map((item) => (
+                            <TodoItem key={item.id} {...item} />
+                        ))}
                     </ul>
                 </section>
             </div>
