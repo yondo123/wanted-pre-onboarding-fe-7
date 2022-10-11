@@ -1,3 +1,4 @@
+import { checkHttpResponse } from '../utils/util';
 import { constants } from '../utils/constants';
 
 /**
@@ -11,7 +12,12 @@ function requestSignUp(request, callback) {
         headers: { 'Content-Type': ' application/json' },
         body: JSON.stringify(request)
     })
-        .then((response) => response.json())
+        .then(function (response) {
+            return response;
+        })
+        .then(function (res, result) {
+            return checkHttpResponse(res, result);
+        })
         .then(function (res) {
             callback(res);
         })
@@ -31,7 +37,9 @@ function requestSignIn(request, callback) {
         headers: { 'Content-Type': ' application/json' },
         body: JSON.stringify(request)
     })
-        .then((response) => response.json())
+        .then(function (response) {
+            return checkHttpResponse(response);
+        })
         .then(function (res) {
             callback(res);
         })

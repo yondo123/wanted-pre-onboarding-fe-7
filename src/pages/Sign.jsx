@@ -21,6 +21,7 @@ const Sign = function () {
     });
     const path = useLocation().pathname.substring(1);
     const elementText = data[path].text;
+
     const emailRegex = new RegExp(/^[a-zA-Z0-9+-\_.]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/);
     const isAvailableEmail = emailRegex.test(accountInfo.email);
     const isAvailablePassword = accountInfo.password.length >= 8;
@@ -41,11 +42,11 @@ const Sign = function () {
     //로그인
     function fetchSignIn() {
         requestSignIn({ email: accountInfo.email, password: accountInfo.password }, function (res) {
-            if (res.access_token) {
-                localStorage.setItem('token', res.access_token);
+            if (res.result) {
+                localStorage.setItem('token', res.data.access_token);
                 navigate('/todo');
             } else {
-                alert(`${res.message}\n응답코드 : ${res.statusCode}`);
+                alert(res.message);
             }
         });
     }
@@ -53,11 +54,12 @@ const Sign = function () {
     //회원가입
     function fetchSignUp() {
         requestSignUp({ email: accountInfo.email, password: accountInfo.password }, function (res) {
-            if (res.access_token) {
+            console.log(res);
+            if (res.result) {
                 alert('회원이 되어주셔서 감사합니다!');
                 navigate('/');
             } else {
-                alert(`${res.message}\n응답코드 : ${res.statusCode}`);
+                alert(res.message);
             }
         });
     }
