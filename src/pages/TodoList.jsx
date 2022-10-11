@@ -11,7 +11,7 @@ const TodoList = function () {
     }, []);
 
     //todo refresh
-    function onDeleteTodoItem() {
+    function onRefreshTodoItem() {
         fetchCreateTodoItem();
     }
 
@@ -61,7 +61,7 @@ const TodoList = function () {
                 <section className="list-wrap">
                     <ul>
                         {todolist.map((item) => (
-                            <TodoItem onDeleteTodoItem={onDeleteTodoItem} key={item.id} {...item} />
+                            <TodoItem onRefreshTodoItem={onRefreshTodoItem} key={item.id} {...item} />
                         ))}
                     </ul>
                 </section>
