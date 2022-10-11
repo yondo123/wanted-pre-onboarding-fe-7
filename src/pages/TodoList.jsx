@@ -63,7 +63,9 @@ const TodoList = function () {
                         type="button"
                         className="button-normal small"
                         disabled={!newTodo.length}
-                        onClick={fetchCreateTodoItem}
+                        onClick={(e) => {
+                            fetchCreateTodoItem();
+                        }}
                     >
                         추가
                     </button>
