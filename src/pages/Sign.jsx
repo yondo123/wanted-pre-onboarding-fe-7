@@ -56,7 +56,10 @@ const Sign = function () {
         requestSignUp({ email: accountInfo.email, password: accountInfo.password }).then((res) => {
             if (res.result) {
                 alert('회원이 되어주셔서 감사합니다!');
-                navigate('/');
+                setAccountInfo({
+                    email: '',
+                    password: ''
+                });
             } else {
                 alert(res.message);
             }
@@ -75,7 +78,7 @@ const Sign = function () {
                         <label htmlFor="user-id" className="hide">
                             아이디
                         </label>
-                        <input type="text" id="email" onKeyUp={setValue} />
+                        <input type="text" id="email" onChange={setValue} value={accountInfo.email} />
                     </div>
                     <p className={'hideinfo text-sm notice ' + (isAvailableEmail ? 'hide' : '')}>
                         이메일 형식에 맞게 입력해주세요.
@@ -87,7 +90,7 @@ const Sign = function () {
                         <label htmlFor="user-password" className="hide">
                             비밀번호
                         </label>
-                        <input type="password" id="password" onKeyUp={setValue} />
+                        <input type="password" id="password" onChange={setValue} value={accountInfo.password} />
                     </div>
                     <p className={'hideinfo text-sm notice ' + (isAvailablePassword ? 'hide' : '')}>
                         비밀번호는 최소 8글자 이상으로 입력해주세요.

@@ -28,8 +28,8 @@ const TodoList = function () {
     function fetchGetTodoList() {
         getTodoList().then((res) => {
             if (res.result) {
-                setTodolist(res.data);
                 setNewTodo('');
+                setTodolist(res.data);
             } else {
                 alert(res.message);
             }
@@ -53,19 +53,17 @@ const TodoList = function () {
                         type="text"
                         id="todo-item"
                         placeholder="새로운 할 일을 입력해주세요."
-                        defaultValue={newTodo}
                         maxLength="20"
-                        onKeyUp={(e) => {
+                        onChange={(e) => {
                             setNewTodo(e.target.value);
                         }}
+                        value={newTodo}
                     />
                     <button
                         type="button"
                         className="button-normal small"
                         disabled={!newTodo.length}
-                        onClick={(e) => {
-                            fetchCreateTodoItem();
-                        }}
+                        onClick={fetchCreateTodoItem}
                     >
                         추가
                     </button>
