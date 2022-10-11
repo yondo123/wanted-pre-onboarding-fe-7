@@ -33,20 +33,24 @@ const TodoItem = function ({ id, todo, isCompleted, userId, onRefreshTodoItem })
     function fetchUpdateTodoItem(updateType) {
         const request = {
             id,
-            todo,
-            isCompleted
+            todo: todoState.todo,
+            isCompleted: todoState.isCompleted
         };
+
         if (updateType === 'text') {
-            updateTodoItem({ ...request, todo: editTodo }).then((res) => {
-                setEditMode(false);
-                setTodoState(res.data);
-            });
+            request.todo = editTodo;
         } else {
-            updateTodoItem({ ...request, isCompleted: !todoState.isCompleted }).then((res) => {
+            request.isCompleted = !todoState.isCompleted;
+        }
+
+        updateTodoItem(request).then((res) => {
+            if (res.result) {
                 setEditMode(false);
                 setTodoState(res.data);
-            });
-        }
+            } else {
+                alert(res.message);
+            }
+        });
     }
 
     return (
