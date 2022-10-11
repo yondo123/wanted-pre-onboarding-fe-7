@@ -5,17 +5,21 @@ import { getTodoList, createTodoItem } from '../api/todo';
 const TodoList = function () {
     const [todolist, setTodolist] = useState([]);
     const [newTodo, setNewTodo] = useState('');
+
     useEffect(function () {
-        fetchGetTodoList(function (res) {
-            setTodolist(res);
-        });
+        fetchGetTodoList();
     }, []);
 
-    //Todo 조회
+    //todo refresh
+    function onDeleteTodoItem() {
+        fetchCreateTodoItem();
+    }
+
+    //todo 조회
     function fetchGetTodoList() {
-        getTodoList(function (res) {
-            console.log(res);
+        getTodoList().then((res) => {
             if (res.result) {
+                setNewTodo('');
                 setTodolist(res.data);
             } else {
                 alert(res.message);
@@ -23,13 +27,9 @@ const TodoList = function () {
         });
     }
 
-    //todo 전송
+    //todo 추가
     function fetchCreateTodoItem() {
-        createTodoItem({ todo: newTodo }, function () {
-            fetchGetTodoList(function (res) {
-                setTodolist(res);
-            });
-        });
+        createTodoItem({ todo: newTodo }).then(() => fetchGetTodoList());
     }
 
     return (
@@ -61,7 +61,7 @@ const TodoList = function () {
                 <section className="list-wrap">
                     <ul>
                         {todolist.map((item) => (
-                            <TodoItem key={item.id} {...item} />
+                            <TodoItem onDeleteTodoItem={onDeleteTodoItem} key={item.id} {...item} />
                         ))}
                     </ul>
                 </section>

@@ -3,50 +3,47 @@ import { constants } from '../utils/constants';
 
 /**
  * TODO 조회 API
- * @param {function} callback : 콜백 함수
  */
-function getTodoList(callback) {
-    fetch(`${constants.REQUEST_URL}/todos`, {
+async function getTodoList() {
+    const response = await fetch(`${constants.REQUEST_URL}/todos`, {
         method: 'GET',
         headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`,
             'Content-Type': ' application/json'
         }
-    })
-        .then(function (response) {
-            return checkHttpResponse(response);
-        })
-        .then(function (res) {
-            callback(res);
-        })
-        .catch(function (res) {
-            callback(res);
-        });
+    });
+    return checkHttpResponse(response);
 }
 
 /**
  * TODO 추가 API
  * @param {object} request : 요청 객체
- * @param {function} callback : 콜백 함수
  */
-function createTodoItem(request, callback) {
-    fetch(`${constants.REQUEST_URL}/todos`, {
+async function createTodoItem(request) {
+    const response = await fetch(`${constants.REQUEST_URL}/todos`, {
         method: 'POST',
         headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`,
             'Content-Type': ' application/json'
         },
         body: JSON.stringify(request)
-    })
-        .then(function (response) {
-            return checkHttpResponse(response);
-        })
-        .then(function (res) {
-            callback(res);
-        })
-        .catch(function (res) {
-            callback(res);
-        });
+    });
+    return checkHttpResponse(response);
 }
 
-export { getTodoList, createTodoItem };
+/**
+ * TODO 삭제 API
+ * @param {string} todoId : todo 번호
+ */
+async function deleteTodoItem(todoId) {
+    const response = await fetch(`${constants.REQUEST_URL}/todos/${todoId}`, {
+        method: 'DELETE',
+        headers: {
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
+            'Content-Type': ' application/json'
+        }
+    });
+    return checkHttpResponse(response);
+}
+
+export { getTodoList, createTodoItem, deleteTodoItem };
