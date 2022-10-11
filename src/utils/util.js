@@ -5,7 +5,8 @@
 function checkHttpResponse(response) {
     let message = 'success';
     if (response.ok) {
-        return response.json().then(function (res) {
+        return response.text().then(function (res) {
+            res = res ? JSON.parse(res) : {};
             return {
                 result: true,
                 data: res || null,
