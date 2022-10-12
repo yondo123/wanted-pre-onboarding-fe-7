@@ -3,6 +3,7 @@
         text-align: center;
     }
 
+
     .input-wrap {
         margin-top: 16px;
         display: flex;
@@ -24,12 +25,20 @@
         }
     }
 
+    .replace {
+        padding-left: 24px;
+        margin-top: 8px;
+        font-weight: 700;
+    }
+
     .submit {
         position: absolute;
+        height: 32px;
+        width: 160px;
         left: 50%;
-        transform: translateX(-50%);
+        bottom: 10%;
+        transform: translate(-50%, -10%);
         margin-top: 32px;
-        position: absolute;
     }
 
     @include responsive(Tablet) {
@@ -63,8 +72,18 @@
             }
         }
 
+        .replace{
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
         .submit {
-            margin-top: 48px;
+            position: absolute;
+            width: 160px;
+            left: 50%;
+            bottom: 10%;
+            transform: translate(-50%, -10%);
         }
     }
 }

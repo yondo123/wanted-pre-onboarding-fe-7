@@ -1,15 +1,19 @@
 import { useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { requestSignIn, requestSignUp } from '../api/auth';
 
 const Sign = function () {
     const data = {
         signin: {
             text: '로그인',
+            replaceText : '먼저 회원가입을 하시겠어요?',
+            replaceLink : "/signup",
             call: fetchSignIn
         },
         signup: {
             text: '회원가입',
+            replaceText : '이미 계정이 있으신가요?',
+            replaceLink : "/signin",
             call: fetchSignUp
         }
     };
@@ -96,6 +100,9 @@ const Sign = function () {
                     <p className={'hideinfo text-sm notice ' + (isAvailablePassword ? 'hide' : '')}>
                         비밀번호는 최소 8글자 이상으로 입력해주세요.
                     </p>
+                </div>
+                <div className='replace'>
+                    <Link to={data[path].replaceLink} replace={true}><span className='text-sm'>{ data[path].replaceText}</span></Link>
                 </div>
                 <button
                     type="button"
