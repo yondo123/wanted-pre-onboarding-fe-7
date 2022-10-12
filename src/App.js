@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import Sign from './pages/Sign';
 import TodoList from './pages/TodoList';
+import RouteAuth from './components/RouteAuth';
 
 function App() {
     return (
@@ -12,10 +13,10 @@ function App() {
             </header>
             <BrowserRouter>
                 <Routes>
-                    <Route path="/" element={<Home />} />
+                    <Route path="/" element={<RouteAuth component={<Home />} destination={'home'} />} />
+                    <Route path="/todo" element={<RouteAuth component={<TodoList />} destination={'todo'} />} />
                     <Route path="/signin" element={<Sign />} />
                     <Route path="/signup" element={<Sign />} />
-                    <Route path="/todo" element={<TodoList />} />
                 </Routes>
             </BrowserRouter>
         </div>

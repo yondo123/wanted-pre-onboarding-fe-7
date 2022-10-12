@@ -1,23 +1,15 @@
 import TodoItem from '../components/TodoItem';
 import { useEffect, useState } from 'react';
 import { getTodoList, createTodoItem } from '../api/todo';
-import { checkAuthState } from '../utils/util';
-import { useNavigate } from 'react-router-dom';
 
 const TodoList = function () {
     const [todolist, setTodolist] = useState([]);
     const [newTodo, setNewTodo] = useState('');
-    const navigate = useNavigate();
 
     useEffect(function () {
         fetchGetTodoList();
     }, []);
 
-    useEffect(function () {
-        if (!checkAuthState()) {
-            navigate('/');
-        }
-    });
 
     //todo refresh
     function onRefreshTodoItem() {
