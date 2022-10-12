@@ -60,6 +60,7 @@ const Sign = function () {
                     email: '',
                     password: ''
                 });
+                navigate('/signin');
             } else {
                 alert(res.message);
             }
