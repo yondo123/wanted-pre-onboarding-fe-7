@@ -1,89 +1,69 @@
 .form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
     .title {
         text-align: center;
     }
 
-
     .input-wrap {
-        margin-top: 16px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        padding-left: 24px;
+        margin-top: 8px;
+
+        .input-field {
+            margin-top: 4px;
+
+            .marker {
+                font-weight: 700;
+            }
+
+            input {
+                width: 80%;
+                margin-top: 8px;
+                padding: 2px 4px;
+                border: 1px solid $border;
+                border-radius: 4px;
+            }
+        }
+
+        .replace {
+            margin-top: 16px;
+            font-weight: 700;
+        }
 
         .notice {
+            margin-top: 8px;
             font-weight: 700;
             color: $accent;
         }
-
-        input {
-            width: 80%;
-            margin-top: 8px;
-            padding: 2px 4px;
-            border: 1px solid $border;
-            border-radius: 4px;
-        }
-    }
-
-    .replace {
-        padding-left: 24px;
-        margin-top: 8px;
-        font-weight: 700;
     }
 
     .submit {
         position: absolute;
-        height: 32px;
-        width: 160px;
         left: 50%;
         bottom: 10%;
         transform: translate(-50%, -10%);
-        margin-top: 32px;
     }
 
+
     @include responsive(Tablet) {
-        .title {
-            margin-bottom: 32px;
-        }
+        justify-content: left;
+        align-items: center;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);               
         .input-wrap {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding-left: 24px;
-
+            width: 254px;
             .input-field {
-                display: flex;
-                justify-content: center;
-                align-items: flex-end;
-            }
-
-            .marker {
-                min-width: 96px;
-            }
-
-            input {
-                margin: 0;
-                width: 240px;
-            }
-
-            .notice {
-                margin-top: 8px;
+                input {
+                    width: 240px;
+                }
             }
         }
-
-        .replace{
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-
-        .submit {
-            position: absolute;
-            width: 160px;
-            left: 50%;
-            bottom: 10%;
-            transform: translate(-50%, -10%);
+        .submit{
+            position: static;
+            transform: unset;
+            margin-top: 24px;
         }
     }
 }

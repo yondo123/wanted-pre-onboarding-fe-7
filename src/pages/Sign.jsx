@@ -6,7 +6,7 @@ const Sign = function () {
     const data = {
         signin: {
             text: '로그인',
-            replaceText : '먼저 회원가입을 하시겠어요?',
+            replaceText : '계정이 없으신가요?',
             replaceLink : "/signup",
             call: fetchSignIn
         },
@@ -75,44 +75,44 @@ const Sign = function () {
         <main>
             <div className="form">
                 <h1 className="text-lg title">{elementText}</h1>
-                <div className="input-wrap">
-                    <div className="input-field">
-                        <p className="text-md marker">
-                            아이디 <span className="text-sm">(email)</span>
+                    <div className="input-wrap">
+                        <div className="input-field">
+                            <p className="text-md marker">
+                                아이디 <span className="text-sm">(email)</span>
+                            </p>
+                            <label htmlFor="user-id" className="hide">
+                                아이디
+                            </label>
+                            <input type="text" id="email" onChange={setValue} value={accountInfo.email} />
+                        </div>
+                        <p className={'hideinfo text-sm notice ' + (isAvailableEmail ? 'hide' : '')}>
+                            이메일 형식에 맞게 입력해주세요.
                         </p>
-                        <label htmlFor="user-id" className="hide">
-                            아이디
-                        </label>
-                        <input type="text" id="email" onChange={setValue} value={accountInfo.email} />
                     </div>
-                    <p className={'hideinfo text-sm notice ' + (isAvailableEmail ? 'hide' : '')}>
-                        이메일 형식에 맞게 입력해주세요.
-                    </p>
-                </div>
-                <div className="input-wrap">
-                    <div className="input-field">
-                        <p className="text-md marker">비밀번호</p>
-                        <label htmlFor="user-password" className="hide">
-                            비밀번호
-                        </label>
-                        <input type="password" id="password" onChange={setValue} value={accountInfo.password} />
+                    <div className="input-wrap">
+                        <div className="input-field">
+                            <p className="text-md marker">비밀번호</p>
+                            <label htmlFor="user-password" className="hide">
+                                비밀번호
+                            </label>
+                            <input type="password" id="password" onChange={setValue} value={accountInfo.password} />
+                        </div>
+                        <p className={'hideinfo text-sm notice ' + (isAvailablePassword ? 'hide' : '')}>
+                            비밀번호는 최소 8글자 이상으로 입력해주세요.
+                        </p>
+                        <div className='replace'>
+                            <Link to={data[path].replaceLink} replace={true}><span className='text-sm'>{ data[path].replaceText}</span></Link>
+                        </div>
                     </div>
-                    <p className={'hideinfo text-sm notice ' + (isAvailablePassword ? 'hide' : '')}>
-                        비밀번호는 최소 8글자 이상으로 입력해주세요.
-                    </p>
+                    <button
+                        type="button"
+                        className="button-normal submit xl"
+                        disabled={!(isAvailableEmail && isAvailablePassword)}
+                        onClick={submit}
+                    >
+                        {elementText}
+                    </button>
                 </div>
-                <div className='replace'>
-                    <Link to={data[path].replaceLink} replace={true}><span className='text-sm'>{ data[path].replaceText}</span></Link>
-                </div>
-                <button
-                    type="button"
-                    className="button-normal submit"
-                    disabled={!(isAvailableEmail && isAvailablePassword)}
-                    onClick={submit}
-                >
-                    {elementText}
-                </button>
-            </div>
         </main>
     );
 };
