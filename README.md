@@ -1,21 +1,23 @@
 ## 개요
 원티드 프리온보딩 프론트엔드 선발 과제 제출 레파지토리입니다.
 
-## 
+### Execute 
 ```bash
 $ npm install
 $ npm run start
 ```
 
-## Demo
+### Use Libraries
++ SASS
++ React Router
 
+## Demo
 ### Live
 [**🔗배포 사이트 (Netlify) 바로가기**](https://sjchoi-wanted-todolist.netlify.app/)
 
 ### Screen Shot
 + **Assignment1 (계정 유효성 검사)**
     ![signup](https://user-images.githubusercontent.com/46988995/195280714-8abd937f-1334-4f61-b79c-e83bd3a8c015.gif)
-
 
 + **Assignment2 (로그인)**
     ![signin](https://user-images.githubusercontent.com/46988995/195280987-8caff022-0238-4af0-bc53-cb9ed82933a3.gif)
